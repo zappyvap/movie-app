@@ -1,0 +1,15 @@
+/* New styles for movie list */
+.movie-card {
+  background-color: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px; /* Fixed width to prevent wrapping issues */
+}
+
+.movie-title {
+  font-size: 1.5em;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  color: #fff;
+}
