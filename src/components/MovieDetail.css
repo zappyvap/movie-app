@@ -1,0 +1,56 @@
+/* This is the main container for the entire detail view. */
+.movie-detail{
+  display: flex; /* Uses Flexbox to stack the button and content vertically */
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #232324;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* This container holds the poster and text side-by-side. */
+.movie-content{
+  display: flex; /* Makes this a Flexbox container */
+  flex-direction: row; /* Arranges children horizontally */
+  align-items: flex-start; /* Aligns items to the top of the container */
+  gap: 30px; /* Adds space between the columns */
+  width: 100%;
+}
+
+/* Styles for the back button */
+.back-to-search-button{
+  align-self: flex-start; /* Pushes the button to the left side */
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Styles for the poster and its container */
+.left-column{
+  display: flex; /* Uses Flexbox to stack the poster and title vertically */
+  flex-direction: column;
+  align-items: center; /* Centers the poster and title within the column */
+}
+
+.movie-poster{
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Styles for the title */
+.movie-title{
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Styles for the text content on the right */
+.right-column{
+  flex-grow: 1; /* Allows this column to take up all remaining space */
+  text-align: left;
+}
