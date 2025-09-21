@@ -35,12 +35,24 @@ const App = () => {
     setSelectedMovie(null);
   };
 
-  return ( // the beginning ternary is for if the favorites button is pressed
+  return (
+    // the beginning ternary is for if the favorites button is pressed
     <>
-      <button onClick={handleFavoriteClicked}>Favorites</button>
-      {favoritePressed ? (
-        <FavoriteButton setFavoritesList= {setFavoritesList} handleBackToSearch={handleBackToSearch} setFavoritePressed={setFavoritePressed} favoritePressed = {favoritePressed}favoritesList={favoritesList} handleMovieSelect={handleMovieSelect} />
+      {!favoritePressed &&
 
+      <button onClick={handleFavoriteClicked} className="favorite-button">
+        Favorite Movies
+      </button>
+      }
+      {favoritePressed ? (
+        <FavoriteButton
+          setFavoritesList={setFavoritesList}
+          handleBackToSearch={handleBackToSearch}
+          setFavoritePressed={setFavoritePressed}
+          favoritePressed={favoritePressed}
+          favoritesList={favoritesList}
+          handleMovieSelect={handleMovieSelect}
+        />
       ) : (
         <>
           <h1>Movie Catalog</h1>
@@ -64,7 +76,11 @@ const App = () => {
              * that is the true path of the ternary expression above.
              */
             <>
-              <SearchBar query={query} setQuery={setQuery} setMovies={setMovies} />
+              <SearchBar
+                query={query}
+                setQuery={setQuery}
+                setMovies={setMovies}
+              />
               <div className="movie-list-container">
                 {movies.slice(0, 3).map((m) => (
                   <Movie

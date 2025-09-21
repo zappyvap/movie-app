@@ -16,9 +16,14 @@ interface Props {
 const MovieDetail: React.FC<Props> = ({ handleBackToSearch, movie,setFavoritesList}) => {
 
     const handleFavorite = () =>{
-        setFavoritesList(currFavs => [...currFavs,movie]);
+        setFavoritesList(currFavs => {
+          if(!currFavs.some((favMovie) => favMovie.id === movie.id)){
+            return [...currFavs, movie];
+          }
+          return currFavs;
+        });
     }
-
+    
   return (
     <div className="movie-detail">
       <button onClick={handleBackToSearch} className="back-to-search-button">

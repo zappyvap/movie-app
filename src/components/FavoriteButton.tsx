@@ -1,4 +1,3 @@
-import Movie from "./Movie";
 import FavoriteMovies from "./FavoriteMovies";
 import { useState } from "react";
 
@@ -18,8 +17,9 @@ const FavoriteButton : React.FC<Props> = ({favoritesList,setFavoritesList,setFav
         setFavoritePressed(false);
     }
     const [toggleButton,setToggleButton] = useState(true);
+    
   return (
-    <div>{ toggleButton && (
+    <div className="movie-list-container">{ toggleButton && (
         <button onClick={handleBackToSearch}>Back To Search</button>    
     )}
         {favoritesList.map((m)=>(

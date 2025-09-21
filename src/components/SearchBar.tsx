@@ -8,6 +8,7 @@ interface Props {
 }
 
 const SearchBar: React.FC<Props> = ({ query, setQuery, setMovies }) => {
+  const apiAuthorization = import.meta.env.VITE_AUTHORIZATION;
   const onClick = () => {
     const url = `https://api.themoviedb.org/3/search/movie?query=${query
       .split(" ") // splits the movie name and adds %20 in between words to make the URL complete
@@ -18,7 +19,7 @@ const SearchBar: React.FC<Props> = ({ query, setQuery, setMovies }) => {
       headers: {
         accept: "application/json",
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwNTAxMTA0ZDA0OTQ4NjE1Y2FlMWJkNWMyODMyYjU1ZSIsIm5iZiI6MTc1Nzg4OTg3Ny45ODQsInN1YiI6IjY4Yzc0NTU1MzZjMTBhMzZjODIyMDI3MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nArtvOEy7rgm-IwWbYbW5UcVcc9sZPqJ-zk1PTlCtWs",
+        apiAuthorization,
       },
     };
     fetch(url, options)
