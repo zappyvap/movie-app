@@ -19,11 +19,10 @@ const FavoriteButton : React.FC<Props> = ({favoritesList,setFavoritesList,setFav
     const [toggleButton,setToggleButton] = useState(true);
     
   return (
-    <div className="movie-list-container">{ toggleButton && (
-        <button onClick={handleBackToSearch}>Back To Search</button>    
-    )}
+    <div className="movie-list-container">
         {favoritesList.map((m)=>(
             <FavoriteMovies
+                key={m.id}
                 handleBackToSearch={handleBackToSearch}
                 movie={m}
                 setFavoritesList={setFavoritesList}

@@ -12,14 +12,48 @@ interface Props {
 
 const FavoriteMovies: React.FC<Props> = ({movie,setFavoritesList,handleBackToSearch,setToggleButton}) => {
   const[clickedMovie,setClickedMovie] = useState(false);
+
   const handleClick = () =>{
     setToggleButton(false);
     setClickedMovie(true);
   }
+
+  const handleUnfavorited = () =>{
+    setFavoritesList((arr : any[]) =>{
+        const index = arr.findIndex((favMovie) => favMovie.id === movie.id);      
+
+        if (index > -1) {
+          const newArr = [...arr];
+          newArr.splice(index, 1);
+          return newArr;
+        }
+        return arr;
+    })
+  }
+
   return (
     <>
       {clickedMovie ? (
-        <MovieDetail setFavoritesList={setFavoritesList} handleBackToSearch={handleBackToSearch} movie = {movie}></MovieDetail>
+        <div className="movie-detail">
+
+          <div className="movie-content">
+            <div className="left-column">
+              <img
+                className="movie-poster"
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <h2 className="movie-title">{movie.title}</h2>
+            </div>
+
+            <div className="right-column">
+                <button className="favorite-button" onClick={handleUnfavorited}>Unfavorite</button>
+              <p>{movie.overview}</p>
+              <p>Rating: {movie.vote_average}</p>
+              <p>Release Date: {movie.release_date}</p>
+            </div>
+          </div>
+        </div>
       ): (
         <div className="movie-card" onClick={handleClick}>
           <img

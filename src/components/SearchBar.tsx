@@ -8,7 +8,7 @@ interface Props {
 }
 
 const SearchBar: React.FC<Props> = ({ query, setQuery, setMovies }) => {
-  const apiAuthorization = import.meta.env.VITE_AUTHORIZATION;
+  const apiAuthorization = import.meta.env.VITE_API_AUTHORIZATION;
   const onClick = () => {
     const url = `https://api.themoviedb.org/3/search/movie?query=${query
       .split(" ") // splits the movie name and adds %20 in between words to make the URL complete
@@ -18,10 +18,10 @@ const SearchBar: React.FC<Props> = ({ query, setQuery, setMovies }) => {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization:
-        apiAuthorization,
+        Authorization: `Bearer ${apiAuthorization}`,
       },
     };
+
     fetch(url, options)
       .then((res) => res.json()) // gets the json
       .then((json) => {
