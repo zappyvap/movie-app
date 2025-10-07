@@ -1,25 +1,28 @@
 import { useState } from "react";
 import "./Movie.css";
-import MovieDetail from "./MovieDetail";
+import type { MovieData } from "../Home";
 
 interface Props {
   handleBackToSearch: () => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   movie: any;
-  setFavoritesList : (movie : any) => void;
-  setToggleButton : (x : boolean) =>void;
+  setFavoritesList : SetFavoritesList;
 }
 
-const FavoriteMovies: React.FC<Props> = ({movie,setFavoritesList,handleBackToSearch,setToggleButton}) => {
+type SetFavoritesList = (
+  // fixes type errors
+  updater: (currFavs: MovieData[]) => MovieData[]
+) => void;
+
+const FavoriteMovies: React.FC<Props> = ({movie,setFavoritesList}) => {
   const[clickedMovie,setClickedMovie] = useState(false);
 
   const handleClick = () =>{
-    setToggleButton(false);
     setClickedMovie(true);
   }
 
   const handleUnfavorited = () =>{
-    setFavoritesList((arr : any[]) =>{
+    setFavoritesList((arr) =>{
         const index = arr.findIndex((favMovie) => favMovie.id === movie.id);      
 
         if (index > -1) {

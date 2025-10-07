@@ -5,7 +5,7 @@ import Movie from "./components/Movie";
 import MovieDetail from "./components/MovieDetail";
 import FavoriteButton from "./components/FavoriteButton";
 
-interface MovieData {
+export interface MovieData {
   // interface that describes movie data
   id: number;
   title: string;

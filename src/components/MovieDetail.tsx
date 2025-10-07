@@ -1,12 +1,20 @@
 import "./MovieDetail.css";
 
+import type { MovieData } from "../Home";
+
+type SetFavoritesList = (
+  // fixes type errors
+  updater: (currFavs: MovieData[]) => MovieData[]
+) => void;
+
 interface Props {
   // takes in the movie array and the back button function
   handleBackToSearch: () => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   movie: any;
-  setFavoritesList : (movie : any) => void;
+  setFavoritesList : SetFavoritesList;
 }
+
 
 /**
  * This is what shows when there is a selected movie.

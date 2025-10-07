@@ -1,22 +1,25 @@
 import FavoriteMovies from "./FavoriteMovies";
-import { useState } from "react";
+import type { MovieData } from "../Home";
 
 interface Props{
-    favoritesList : any[];
-    handleMovieSelect : (movie : any) => void;
+    favoritesList : MovieData[];
+    handleMovieSelect : (movie : MovieData) => void;
     favoritePressed : boolean;
     setFavoritePressed: (x:boolean) => void;
-    setFavoritesList : any;
-    handleBackToSearch : any;
+    setFavoritesList : SetFavoritesList;
+    handleBackToSearch : unknown;
 }
 
+type SetFavoritesList = (
+  // fixes type errors
+  updater: (currFavs: MovieData[]) => MovieData[]
+) => void;
 
 const FavoriteButton : React.FC<Props> = ({favoritesList,setFavoritesList,setFavoritePressed}) => {
 
     const handleBackToSearch = () =>{
         setFavoritePressed(false);
     }
-    const [toggleButton,setToggleButton] = useState(true);
     
   return (
     <div className="movie-list-container">
@@ -25,9 +28,7 @@ const FavoriteButton : React.FC<Props> = ({favoritesList,setFavoritesList,setFav
                 key={m.id}
                 handleBackToSearch={handleBackToSearch}
                 movie={m}
-                setFavoritesList={setFavoritesList}
-                setToggleButton={setToggleButton}
-                
+                setFavoritesList={setFavoritesList}                
             />
         ))}
     </div>
